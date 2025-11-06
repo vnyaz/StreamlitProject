@@ -49,6 +49,12 @@ filtered_df = filtered_df[(filtered_df['year'].astype(int) >= year_filter[0]) & 
 # =============================
 
 st.header("1. Jumlah Lagu per Genre")
+
+st.write("""
+Grafik batang digunakan untuk membandingkan nilai antar kategori.  
+Visualisasi ini membantu kita melihat kategori mana yang memiliki nilai tertinggi atau terendah dengan cepat.
+""")
+
 # --- KODE PERMANEN UNTUK PERBAIKAN PLOTLY ---
 # BARIS KRITIS: Mengubah DataFrame agar kolomnya bernama 'Genre' dan 'Count'
 genre_count = filtered_df['genre'].value_counts().reset_index()
@@ -62,29 +68,42 @@ fig_bar = px.bar(genre_count, x='Genre', y='Count',
                  title="Distribusi Lagu Berdasarkan Genre")
 st.plotly_chart(fig_bar, use_container_width=True)
 
-st.markdown("**Insight:** Terlihat genre yang paling banyak muncul menunjukkan preferensi dominan dalam dataset musik ini.")
+st.markdown("**Insight:**  Genre dengan jumlah lagu terbanyak menggambarkan preferensi musik yang paling populer "
+            "di kalangan pendengar Spotify dalam periode data yang dianalisis.")
 
 # =============================
 # 5. Line Chart: Tren Popularitas
 # =============================
 if 'year' in df.columns:
     st.header("2. Tren Rata-Rata Popularitas Lagu per Tahun")
+    st.write("""
+    Grafik garis digunakan untuk melihat perubahan rata-rata popularitas lagu dari tahun ke tahun.
+    Visualisasi ini membantu mengidentifikasi tren peningkatan atau penurunan popularitas dalam industri musik.
+    """)
+
     trend = filtered_df.groupby('year')['popularity'].mean().reset_index()
     fig_line = px.line(trend, x='year', y='popularity',
                         markers=True, color_discrete_sequence=['red'])
     st.plotly_chart(fig_line, use_container_width=True)
-    st.markdown("**Insight:** Terlihat bagaimana popularitas lagu berubah seiring waktu.")
+    st.markdown("**Insight:** Terlihat adanya fluktuasi tingkat popularitas lagu dari tahun ke tahun. "
+            "Periode dengan rata-rata popularitas tinggi dapat mencerminkan munculnya genre atau artis yang sedang naik daun")
 
 # =============================
 # 6. Scatter Plot: Energy vs Danceability
 # =============================
 st.header("3. Hubungan Energy vs Danceability")
+st.write("""
+    Diagram sebar digunakan untuk melihat hubungan antara dua variabel numerik, yaitu *energy* dan *danceability*.
+    Visualisasi ini membantu memahami bagaimana karakteristik lagu saling berhubungan.
+    """)
+
 fig_scatter = px.scatter(filtered_df, x='energy', y='danceability', color='popularity',
                           hover_data=['genre'], color_continuous_scale='Plasma',
                           title="Hubungan antara Energy dan Danceability Lagu")
 st.plotly_chart(fig_scatter, use_container_width=True)
 
-st.markdown("**Insight:** Lagu yang energik umumnya memiliki danceability tinggi — menunjukkan korelasi positif antara keduanya.")
+st.markdown("**Insight:** Lagu dengan tingkat *energy* tinggi umumnya juga memiliki *danceability* tinggi, "
+            "menunjukkan korelasi positif antara kedua aspek ini dalam menciptakan lagu yang menarik untuk didengarkan dan ditarikan.")
 
 # =============================
 # 7. Footer
