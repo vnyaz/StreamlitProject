@@ -68,8 +68,9 @@ fig_bar = px.bar(genre_count, x='Genre', y='Count',
                  title="Distribusi Lagu Berdasarkan Genre")
 st.plotly_chart(fig_bar, use_container_width=True)
 
-st.markdown("**Insight:**  Genre dengan jumlah lagu terbanyak menggambarkan preferensi musik yang paling populer "
-            "di kalangan pendengar Spotify dalam periode data yang dianalisis.")
+st.markdown("**Insight:** Berdasarkan grafik batang yang menampilkan jumlah lagu per genre dalam rentang tahun 1998 hingga 2020, terlihat adanya dominasi yang sangat jelas dari tiga kategori genre teratas. Genre Pop menempati posisi tertinggi dengan jumlah lagu paling banyak, diikuti oleh Hip Hop, Pop, dan Dance/Electronic pada posisi kedua, serta Hip Hop, Pop, dan R&B pada posisi ketiga."
+            "Pola distribusi ini menunjukkan bahwa mayoritas lagu dalam dataset berasal dari genre yang bersifat mainstream dan hibrida, yakni genre hasil perpaduan beberapa gaya musik populer."
+            "Secara keseluruhan, grafik ini memiliki kecenderungan yang miring (skewed), menandakan ketimpangan distribusi data di mana sebagian besar produksi lagu terfokus pada genre-genre populer dibandingkan dengan genre lain yang memiliki representasi lebih sedikit.")
 
 # =============================
 # 5. Line Chart: Tren Popularitas
@@ -85,8 +86,9 @@ if 'year' in df.columns:
     fig_line = px.line(trend, x='year', y='popularity',
                         markers=True, color_discrete_sequence=['red'])
     st.plotly_chart(fig_line, use_container_width=True)
-    st.markdown("**Insight:** Terlihat adanya fluktuasi tingkat popularitas lagu dari tahun ke tahun. "
-            "Periode dengan rata-rata popularitas tinggi dapat mencerminkan munculnya genre atau artis yang sedang naik daun")
+    st.markdown("**Insight:** Grafik garis yang menampilkan tren rata-rata popularitas lagu dari tahun ke tahun menunjukkan adanya fluktuasi signifikan sepanjang periode 1998 hingga 2020. Terlihat bahwa tingkat popularitas lagu tidak bersifat stabil, melainkan mengalami naik turun yang cukup tajam."
+                "uncak popularitas tertinggi terjadi sekitar tahun 2017 dan 2020, yang dapat dikaitkan dengan munculnya berbagai artis dan genre baru yang berhasil menarik perhatian pendengar secara global. Sementara itu, pada awal dan akhir rentang waktu pengamatan, grafik memperlihatkan adanya penurunan tajam, menandakan perubahan selera musik atau dominasi tren musik tertentu pada masa tersebut."
+                "Secara keseluruhan, pola ini menggambarkan bahwa popularitas lagu sangat dinamis dan dipengaruhi oleh perkembangan industri serta preferensi audiens dari waktu ke waktu.")
 
 # =============================
 # 6. Scatter Plot: Energy vs Danceability
@@ -102,8 +104,9 @@ fig_scatter = px.scatter(filtered_df, x='energy', y='danceability', color='popul
                           title="Hubungan antara Energy dan Danceability Lagu")
 st.plotly_chart(fig_scatter, use_container_width=True)
 
-st.markdown("**Insight:** Lagu dengan tingkat *energy* tinggi umumnya juga memiliki *danceability* tinggi, "
-            "menunjukkan korelasi positif antara kedua aspek ini dalam menciptakan lagu yang menarik untuk didengarkan dan ditarikan.")
+st.markdown("**Insight:** Grafik sebar yang menampilkan hubungan antara variabel energy dan danceability menunjukkan adanya korelasi positif yang kuat."
+            "Pola titik pada grafik membentuk pita diagonal dari kiri bawah ke kanan atas, yang menandakan bahwa semakin tinggi tingkat energy sebuah lagu, maka cenderung semakin tinggi pula tingkat danceability-nya. Hal ini berarti lagu-lagu yang energik umumnya juga mudah untuk ditarikan dan memiliki ritme yang menarik bagi pendengar. Selain itu, titik-titik dengan warna paling terang — yang merepresentasikan lagu dengan popularitas tinggi — terkonsentrasi di area kanan atas grafik, yaitu pada rentang nilai energy dan danceability antara 0.6 hingga 0.9."
+            "Temuan ini mengindikasikan bahwa lagu yang energik dan mudah ditarikan lebih berpeluang menjadi populer, menggambarkan preferensi pendengar terhadap musik yang berirama cepat dan penuh semangat.")
 
 # =============================
 # 7. Footer
